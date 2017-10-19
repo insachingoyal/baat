@@ -10,7 +10,7 @@
 
     <modules>
         <module>baat-web</module>
-        <module>baat-chat-service</module>
+        <module>baat-chat</module>
         <module>baat-ws</module>
     </modules>
 
