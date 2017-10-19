@@ -9,9 +9,10 @@
     <version>0.1.0</version>
 
     <modules>
-        <module>baat-web</module>
+        <module>baat-user</module>
         <module>baat-chat</module>
         <module>baat-ws</module>
+        <module>baat-web</module>
     </modules>
 
     <parent>
