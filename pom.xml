@@ -11,6 +11,7 @@
     <modules>
         <module>baat-web</module>
         <module>baat-chat-service</module>
+        <module>baat-ws</module>
     </modules>
 
     <parent>
