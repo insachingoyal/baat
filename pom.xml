@@ -9,6 +9,7 @@
     <version>0.1.0</version>
 
     <modules>
+        <module>baat-conf</module>
         <module>baat-user</module>
         <module>baat-chat</module>
         <module>baat-ws</module>

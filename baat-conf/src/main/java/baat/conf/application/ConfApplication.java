@@ -1,4 +1,4 @@
-package baat.chat.application;
+package baat.conf.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("baat")
-public class UserApplication {
+public class ConfApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(UserApplication.class, args);
+		SpringApplication.run(ConfApplication.class, args);
 	}
 }

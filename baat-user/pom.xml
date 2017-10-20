@@ -10,4 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>baat-user</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>baat</groupId>
+            <artifactId>baat-conf</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
