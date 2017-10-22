@@ -26,8 +26,8 @@ public class ChatController {
 	@CrossOrigin
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public void handleMessage(@RequestBody final ChatMessage chatMessage) throws IllegalAccessException, JsonProcessingException {
-		if (!validUserToken(chatMessage.getUserToken())) {
-			throw new IllegalAccessException("Invalid user token passed");
+		if (!validUserToken(chatMessage.getSenderUserToken())) {
+			throw new IllegalAccessException("Invalid sender user token passed");
 		}
 
 		final String rawChatWSMessage = createRawChatWSMessage(chatMessage);
@@ -38,8 +38,11 @@ public class ChatController {
 	private String createRawChatWSMessage(final ChatMessage chatMessage) throws JsonProcessingException {
 		final Set<String> recipientUserTokens = findValidUserTokens(chatMessage.getRecipientUserId());
 
-		final ChatWSMessage chatWSMessage = new ChatWSMessage(recipientUserTokens,
-				chatMessage.getTextMessage(), chatMessage.getBinaryMessage());
+		// TODO get user id from user service
+		final Long senderUserId = Long.valueOf(chatMessage.getSenderUserToken());
+
+		final ChatWSMessage chatWSMessage = new ChatWSMessage(senderUserId, chatMessage.getRecipientChannelId(),
+				recipientUserTokens, chatMessage.getTextMessage());
 
 		final ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(chatWSMessage);
@@ -47,6 +50,7 @@ public class ChatController {
 
 	private Set<String> findValidUserTokens(final Long recipientUserId) {
 		//TODO proper call to user service to get valid tokens
+		//TODO handle channelId as well
 		final Set<String> tokens = new HashSet<>();
 		tokens.add(recipientUserId.toString());
 		return tokens;

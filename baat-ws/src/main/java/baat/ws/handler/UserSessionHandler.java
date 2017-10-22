@@ -7,6 +7,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class UserSessionHandler extends AbstractWebSocketHandler {
 
 	private final static Map<String, Set<WebSocketSession>> SESSIONS_BY_USER_TOKENS = new ConcurrentHashMap<>();
 
+	@Override
 	protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception {
 		final String userToken = message.getPayload();
 
@@ -27,11 +29,13 @@ public class UserSessionHandler extends AbstractWebSocketHandler {
 		addSession(userToken, session);
 	}
 
-	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
+	@Override
+	protected void handleBinaryMessage(final WebSocketSession session, final BinaryMessage message) throws Exception {
 		session.close(CloseStatus.NOT_ACCEPTABLE.withReason("Message sending through WS not allowed"));
 	}
 
-	protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {
+	@Override
+	protected void handlePongMessage(final WebSocketSession session, final PongMessage message) throws Exception {
 		// do nothing
 	}
 
@@ -43,6 +47,17 @@ public class UserSessionHandler extends AbstractWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(final WebSocketSession session, final CloseStatus status) throws Exception {
 		removeSession(session);
+	}
+
+	public void sendMessage(final Set<String> userTokens, final String message) throws IOException {
+		for (final String userToken : userTokens) {
+			final Set<WebSocketSession> sessions = SESSIONS_BY_USER_TOKENS.get(userToken);
+			if (sessions != null) {
+				for (final WebSocketSession session : sessions) {
+					session.sendMessage(new TextMessage(message));
+				}
+			}
+		}
 	}
 
 	private boolean validUserToken(final String userToken) {

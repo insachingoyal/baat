@@ -21,7 +21,7 @@ $(document).ready(function () {
         var recipientUserId = $("#to-user").val();
         var textMessage = $("#new-message").val();
         var chatMessage = JSON.stringify({
-            "userToken": userToken,
+            "senderUserToken": userToken,
             "recipientUserId": recipientUserId,
             "textMessage": textMessage
         });
