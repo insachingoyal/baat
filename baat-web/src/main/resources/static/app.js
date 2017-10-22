@@ -17,13 +17,13 @@ $(document).ready(function () {
     });
 
     $('#send-button').click(function () {
-        var fromUserToken = $("#from-user").val();
-        var toUserToken = $("#to-user").val();
-        var newMessage = $("#new-message").val();
+        var userToken = $("#from-user").val();
+        var recipientUserId = $("#to-user").val();
+        var textMessage = $("#new-message").val();
         var chatMessage = JSON.stringify({
-            "fromUserToken": fromUserToken,
-            "toUserToken": toUserToken,
-            "message": newMessage
+            "userToken": userToken,
+            "recipientUserId": recipientUserId,
+            "textMessage": textMessage
         });
 
         $.ajax({
