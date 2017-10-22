@@ -52,7 +52,7 @@ public class UserSessionHandler extends AbstractWebSocketHandler {
 	}
 
 	private void addSession(final String userToken, final WebSocketSession session) {
-		SESSIONS_BY_USER_TOKENS.putIfAbsent(userToken, new HashSet<>()).add(session);
+		SESSIONS_BY_USER_TOKENS.computeIfAbsent(userToken, k -> new HashSet<>()).add(session);
 	}
 
 	private void removeSession(final WebSocketSession session) {
