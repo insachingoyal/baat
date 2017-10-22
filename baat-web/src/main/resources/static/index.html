@@ -6,12 +6,34 @@
 </head>
 
 <body>
-<div id="messages">
+
+<div id="connection-panel">
+    <div>Connection Panel >></div>
+    <br>
+    <div>
+        User: <input id="from-user" type="text"/>
+        <input type="button" id="connect-button" value="Connect">
+    </div>
 </div>
 
-<form id="new-message">
-    <input id="message-text" type="text"/>
-    <input type="submit" value="Send">
-</form>
+<hr>
+
+<div id="messages-panel">
+    <div>Messages >></div>
+    <br>
+    <div id="messages">
+    </div>
+</div>
+
+<hr>
+
+<div id="send-new-message-panel">
+    <div>Send New Message >></div>
+    <br>
+    To: <input id="to-user" type="text"/>
+    Message: <input id="new-message" type="text"/>
+    <input type="button" id="send-button" value="Send">
+</div>
+
 </body>
 </html>

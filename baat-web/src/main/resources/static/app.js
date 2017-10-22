@@ -1,22 +1,24 @@
 $(document).ready(function () {
-    ws = new WebSocket("ws://" + location.hostname + ":8082/baat-ws");
+    $('connect-button').click(function () {
+        var ws = new WebSocket("ws://" + location.hostname + ":8082/baat-ws");
 
-    ws.onmessage = function (event) {
-        $("#messages").append("<p>" + event.data + "</p>");
-    };
+        ws.onmessage = function (event) {
+            $("#messages").append("<p>" + event.data + "</p>");
+        };
 
-    ws.onclose = function () {
-        console.log("Socket closed");
-    };
+        ws.onclose = function () {
+            console.log("Socket closed");
+        };
 
-    ws.onopen = function () {
-        console.log("Connected");
-        ws.send("Hello from " + navigator.userAgent);
-    };
+        ws.onopen = function () {
+            console.log("Connected");
+            ws.send(("#from-user").val());
+        };
+    });
 
-    $("#new-message").bind("submit", function (event) {
-        event.preventDefault();
-        ws.send($("#message-text").val());
-        $("#message-text").val("");
+    $('send-button').click(function () {
+        if (ws) {
+            ws.send(("#from-user").val());
+        }
     });
 });

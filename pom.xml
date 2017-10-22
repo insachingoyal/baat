@@ -9,7 +9,7 @@
     <version>0.1.0</version>
 
     <modules>
-        <module>baat-conf</module>
+        <module>baat-common</module>
         <module>baat-user</module>
         <module>baat-chat</module>
         <module>baat-ws</module>
@@ -48,6 +48,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>baat</groupId>
+            <artifactId>baat-common</artifactId>
+            <version>0.1.0</version>
         </dependency>
     </dependencies>
 </project>
