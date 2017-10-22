@@ -1,20 +1,33 @@
 package baat.conf.transfer;
 
 public class ChatMessage {
-	private String userToken;
+	private String fromUserToken;
+	private String toUserToken;
 	private String message;
 
-	public ChatMessage(final String userToken, final String message) {
-		this.userToken = userToken;
+	public ChatMessage() {
+	}
+
+	public ChatMessage(final String fromUserToken, final String toUserToken, final String message) {
+		this.fromUserToken = fromUserToken;
+		this.toUserToken = toUserToken;
 		this.message = message;
 	}
 
-	public String getUserToken() {
-		return userToken;
+	public String getFromUserToken() {
+		return fromUserToken;
 	}
 
-	public void setUserToken(final String userToken) {
-		this.userToken = userToken;
+	public void setFromUserToken(final String fromUserToken) {
+		this.fromUserToken = fromUserToken;
+	}
+
+	public String getToUserToken() {
+		return toUserToken;
+	}
+
+	public void setToUserToken(final String toUserToken) {
+		this.toUserToken = toUserToken;
 	}
 
 	public String getMessage() {
