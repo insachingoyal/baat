@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("baat")
 public class ChatApplication {
+	public final static String CHAT_WS_EXCHANGE_NAME = "chat-ws-message-exchange";
+
 	public static void main(String[] args) {
 		SpringApplication.run(ChatApplication.class, args);
 	}

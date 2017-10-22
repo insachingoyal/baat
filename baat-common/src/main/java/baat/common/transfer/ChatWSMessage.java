@@ -1,4 +1,4 @@
-package baat.conf.transfer;
+package baat.common.transfer;
 
 
 import java.util.Arrays;
