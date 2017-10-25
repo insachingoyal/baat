@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#connect-button').click(function () {
-        var ws = new WebSocket("ws://" + location.hostname + ":8082/baat-ws");
+        var ws = new WebSocket("ws://" + location.hostname + ":8083/baat-ws");
 
         ws.onmessage = function (event) {
             $("#messages").append("<p>" + event.data + "</p>");
@@ -36,7 +36,7 @@ $(document).ready(function () {
             },
             processData: false,
             type: 'PUT',
-            url: "http://" + location.hostname + ":8083/"
+            url: "http://" + location.hostname + ":8084/"
         });
     });
 });

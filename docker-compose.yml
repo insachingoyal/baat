@@ -1,7 +1,34 @@
-rabbitmq:
-  image: rabbitmq:management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
+version: "2"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
+  baat-user:
+    build: baat-user/
+    ports:
+      - '8081:8081'
+
+  baat-web:
+    build: baat-web/
+    ports:
+      - '8082:8082'
+
+  baat-ws:
+    build: baat-ws/
+    links:
+      - rabbitmq:management
+      - baat-user
+    ports:
+      - '8083:8083'
+
+  baat-chat:
+    build: baat-chat/
+    links:
+      - rabbitmq:management
+      - baat-user
+    ports:
+      - '8084:8084'
 
