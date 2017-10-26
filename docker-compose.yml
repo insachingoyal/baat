@@ -8,16 +8,19 @@ services:
 
   baat-user:
     build: baat-user/
+    image: sachingoyaldocker/baat-user
     ports:
       - '8081:8081'
 
   baat-web:
     build: baat-web/
+    image: sachingoyaldocker/baat-web
     ports:
       - '8082:8082'
 
   baat-ws:
     build: baat-ws/
+    image: sachingoyaldocker/baat-ws
     links:
       - rabbitmq:management
       - baat-user
@@ -26,6 +29,7 @@ services:
 
   baat-chat:
     build: baat-chat/
+    image: sachingoyaldocker/baat-chat
     links:
       - rabbitmq:management
       - baat-user
