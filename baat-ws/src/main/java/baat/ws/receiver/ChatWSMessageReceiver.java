@@ -1,7 +1,7 @@
 package baat.ws.receiver;
 
-import baat.common.transfer.ChatWSMessage;
-import baat.common.transfer.ReplyMessage;
+import baat.common.transfer.chat.ChatWSMessage;
+import baat.common.transfer.chat.ReplyMessage;
 import baat.ws.handler.UserSessionHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

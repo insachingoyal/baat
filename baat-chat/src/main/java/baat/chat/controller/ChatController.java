@@ -1,7 +1,7 @@
 package baat.chat.controller;
 
-import baat.common.transfer.ChatMessage;
-import baat.common.transfer.ChatWSMessage;
+import baat.common.transfer.chat.ChatMessage;
+import baat.common.transfer.chat.ChatWSMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

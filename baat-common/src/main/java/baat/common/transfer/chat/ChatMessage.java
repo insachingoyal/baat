@@ -1,7 +1,6 @@
-package baat.common.transfer;
+package baat.common.transfer.chat;
 
 
-//TODO Lombok
 public class ChatMessage {
 	private String senderUserToken;
 

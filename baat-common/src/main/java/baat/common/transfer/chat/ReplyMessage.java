@@ -1,22 +1,17 @@
-package baat.common.transfer;
+package baat.common.transfer.chat;
 
 
-import java.util.Set;
-
-//TODO Lombok
-public class ChatWSMessage {
+public class ReplyMessage {
 	private Long senderUserId;
 	private Long recipientChannelId;
-	private Set<String> recipientUserTokens;
 	private String textMessage;
 
-	public ChatWSMessage() {
+	public ReplyMessage() {
 	}
 
-	public ChatWSMessage(final Long senderUserId, final Long recipientChannelId, final Set<String> recipientUserTokens, final String textMessage) {
+	public ReplyMessage(final Long senderUserId, final Long recipientChannelId, final String textMessage) {
 		this.senderUserId = senderUserId;
 		this.recipientChannelId = recipientChannelId;
-		this.recipientUserTokens = recipientUserTokens;
 		this.textMessage = textMessage;
 	}
 
@@ -36,14 +31,6 @@ public class ChatWSMessage {
 		this.recipientChannelId = recipientChannelId;
 	}
 
-	public Set<String> getRecipientUserTokens() {
-		return recipientUserTokens;
-	}
-
-	public void setRecipientUserTokens(final Set<String> recipientUserTokens) {
-		this.recipientUserTokens = recipientUserTokens;
-	}
-
 	public String getTextMessage() {
 		return textMessage;
 	}
@@ -59,13 +46,11 @@ public class ChatWSMessage {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		final ChatWSMessage that = (ChatWSMessage) o;
+		final ReplyMessage that = (ReplyMessage) o;
 
 		if (senderUserId != null ? !senderUserId.equals(that.senderUserId) : that.senderUserId != null)
 			return false;
 		if (recipientChannelId != null ? !recipientChannelId.equals(that.recipientChannelId) : that.recipientChannelId != null)
-			return false;
-		if (recipientUserTokens != null ? !recipientUserTokens.equals(that.recipientUserTokens) : that.recipientUserTokens != null)
 			return false;
 		return textMessage != null ? textMessage.equals(that.textMessage) : that.textMessage == null;
 	}
@@ -74,17 +59,15 @@ public class ChatWSMessage {
 	public int hashCode() {
 		int result = senderUserId != null ? senderUserId.hashCode() : 0;
 		result = 31 * result + (recipientChannelId != null ? recipientChannelId.hashCode() : 0);
-		result = 31 * result + (recipientUserTokens != null ? recipientUserTokens.hashCode() : 0);
 		result = 31 * result + (textMessage != null ? textMessage.hashCode() : 0);
 		return result;
 	}
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("ChatWSMessage{");
+		final StringBuilder sb = new StringBuilder("ReplyMessage{");
 		sb.append("senderUserId=").append(senderUserId);
 		sb.append(", recipientChannelId=").append(recipientChannelId);
-		sb.append(", recipientUserTokens=").append(recipientUserTokens);
 		sb.append(", textMessage='").append(textMessage).append('\'');
 		sb.append('}');
 		return sb.toString();
