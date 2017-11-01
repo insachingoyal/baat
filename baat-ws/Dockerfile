@@ -7,6 +7,4 @@ VOLUME /opt/baat
 
 ADD target/baat-ws*.jar /opt/baat/baat-ws.jar
 
-EXPOSE 8083
-
-ENTRYPOINT ["java","-Dserver.port=8083","-Dspring.rabbitmq.host=rabbitmq", "-jar","/opt/baat/baat-ws.jar"]
+ENTRYPOINT ["java", "-jar","/opt/baat/baat-ws.jar"]

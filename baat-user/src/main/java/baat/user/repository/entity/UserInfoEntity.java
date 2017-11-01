@@ -1,20 +1,36 @@
-package baat.common.transfer.user;
+package baat.user.repository.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Arrays;
 
-public class UserInfo {
+@Entity
+public class UserInfoEntity {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String email;
 	private String name;
 	private byte[] avatar;
 
-	public UserInfo() {
+	public UserInfoEntity() {
 	}
 
-	public UserInfo(final String name, final String email, final byte[] avatar) {
+	public UserInfoEntity(final String name, final String email, final byte[] avatar) {
 		this.name = name;
 		this.email = email;
 		this.avatar = avatar;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(final Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -48,18 +64,21 @@ public class UserInfo {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		final UserInfo userInfo = (UserInfo) o;
+		final UserInfoEntity that = (UserInfoEntity) o;
 
-		if (name != null ? !name.equals(userInfo.name) : userInfo.name != null)
+		if (id != null ? !id.equals(that.id) : that.id != null)
 			return false;
-		if (email != null ? !email.equals(userInfo.email) : userInfo.email != null)
+		if (name != null ? !name.equals(that.name) : that.name != null)
 			return false;
-		return Arrays.equals(avatar, userInfo.avatar);
+		if (email != null ? !email.equals(that.email) : that.email != null)
+			return false;
+		return Arrays.equals(avatar, that.avatar);
 	}
 
 	@Override
 	public int hashCode() {
-		int result = name != null ? name.hashCode() : 0;
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
 		result = 31 * result + (email != null ? email.hashCode() : 0);
 		result = 31 * result + Arrays.hashCode(avatar);
 		return result;
@@ -67,8 +86,9 @@ public class UserInfo {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("User{");
-		sb.append("name='").append(name).append('\'');
+		final StringBuilder sb = new StringBuilder("UserInfoEntity{");
+		sb.append("id=").append(id);
+		sb.append(", name='").append(name).append('\'');
 		sb.append(", email='").append(email).append('\'');
 		sb.append(", avatar=").append(Arrays.toString(avatar));
 		sb.append('}');

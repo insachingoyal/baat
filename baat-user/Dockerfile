@@ -7,6 +7,4 @@ VOLUME /opt/baat
 
 ADD target/baat-user*.jar /opt/baat/baat-user.jar
 
-EXPOSE 8081
-
-ENTRYPOINT ["java","-Dserver.port=8081","-jar","/opt/baat/baat-user.jar"]
+ENTRYPOINT ["java","-jar","/opt/baat/baat-user.jar"]
