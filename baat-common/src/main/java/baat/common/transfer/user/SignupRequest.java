@@ -1,17 +1,12 @@
 package baat.common.transfer.user;
 
-public class UserInfo {
+public class SignupRequest {
 	private String email;
 	private String name;
 	private String avatarUrl;
+	private String password;
 
-	public UserInfo() {
-	}
-
-	public UserInfo(final String email, final String name, final String avatarUrl) {
-		this.email = email;
-		this.name = name;
-		this.avatarUrl = avatarUrl;
+	public SignupRequest() {
 	}
 
 	public String getEmail() {
@@ -38,6 +33,14 @@ public class UserInfo {
 		this.avatarUrl = avatarUrl;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(final String password) {
+		this.password = password;
+	}
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o)
@@ -45,13 +48,15 @@ public class UserInfo {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		final UserInfo userInfo = (UserInfo) o;
+		final SignupRequest that = (SignupRequest) o;
 
-		if (email != null ? !email.equals(userInfo.email) : userInfo.email != null)
+		if (email != null ? !email.equals(that.email) : that.email != null)
 			return false;
-		if (name != null ? !name.equals(userInfo.name) : userInfo.name != null)
+		if (name != null ? !name.equals(that.name) : that.name != null)
 			return false;
-		return avatarUrl != null ? avatarUrl.equals(userInfo.avatarUrl) : userInfo.avatarUrl == null;
+		if (avatarUrl != null ? !avatarUrl.equals(that.avatarUrl) : that.avatarUrl != null)
+			return false;
+		return password != null ? password.equals(that.password) : that.password == null;
 	}
 
 	@Override
@@ -59,15 +64,17 @@ public class UserInfo {
 		int result = email != null ? email.hashCode() : 0;
 		result = 31 * result + (name != null ? name.hashCode() : 0);
 		result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
+		result = 31 * result + (password != null ? password.hashCode() : 0);
 		return result;
 	}
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("UserInfo{");
+		final StringBuilder sb = new StringBuilder("SignupRequest{");
 		sb.append("email='").append(email).append('\'');
 		sb.append(", name='").append(name).append('\'');
 		sb.append(", avatarUrl='").append(avatarUrl).append('\'');
+		sb.append(", password='").append(password).append('\'');
 		sb.append('}');
 		return sb.toString();
 	}

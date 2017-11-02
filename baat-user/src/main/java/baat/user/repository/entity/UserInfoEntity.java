@@ -1,30 +1,33 @@
 package baat.user.repository.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Arrays;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_info")
 public class UserInfoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String email;
-	private String name;
-	private byte[] avatar;
+	private String fullName;
+	private String avatarUrl;
 
 	public UserInfoEntity() {
 	}
 
-	public UserInfoEntity(final String name, final String email, final byte[] avatar) {
-		this.name = name;
+	public UserInfoEntity(final String fullName, final String email, final String avatarUrl) {
+		this.fullName = fullName;
 		this.email = email;
-		this.avatar = avatar;
+		this.avatarUrl = avatarUrl;
 	}
 
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -33,14 +36,16 @@ public class UserInfoEntity {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	@Column(name = "full_name")
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setName(final String name) {
-		this.name = name;
+	public void setFullName(final String fullName) {
+		this.fullName = fullName;
 	}
 
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -49,12 +54,13 @@ public class UserInfoEntity {
 		this.email = email;
 	}
 
-	public byte[] getAvatar() {
-		return avatar;
+	@Column(name = "avatar_url")
+	public String getAvatarUrl() {
+		return avatarUrl;
 	}
 
-	public void setAvatar(final byte[] avatar) {
-		this.avatar = avatar;
+	public void setAvatarUrl(final String avatarUrl) {
+		this.avatarUrl = avatarUrl;
 	}
 
 	@Override
@@ -68,19 +74,19 @@ public class UserInfoEntity {
 
 		if (id != null ? !id.equals(that.id) : that.id != null)
 			return false;
-		if (name != null ? !name.equals(that.name) : that.name != null)
-			return false;
 		if (email != null ? !email.equals(that.email) : that.email != null)
 			return false;
-		return Arrays.equals(avatar, that.avatar);
+		if (fullName != null ? !fullName.equals(that.fullName) : that.fullName != null)
+			return false;
+		return avatarUrl != null ? avatarUrl.equals(that.avatarUrl) : that.avatarUrl == null;
 	}
 
 	@Override
 	public int hashCode() {
 		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
 		result = 31 * result + (email != null ? email.hashCode() : 0);
-		result = 31 * result + Arrays.hashCode(avatar);
+		result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+		result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
 		return result;
 	}
 
@@ -88,9 +94,9 @@ public class UserInfoEntity {
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("UserInfoEntity{");
 		sb.append("id=").append(id);
-		sb.append(", name='").append(name).append('\'');
 		sb.append(", email='").append(email).append('\'');
-		sb.append(", avatar=").append(Arrays.toString(avatar));
+		sb.append(", fullName='").append(fullName).append('\'');
+		sb.append(", avatarUrl='").append(avatarUrl).append('\'');
 		sb.append('}');
 		return sb.toString();
 	}

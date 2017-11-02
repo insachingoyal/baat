@@ -16,8 +16,8 @@
 CREATE TABLE IF NOT EXISTS `user_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(200) NOT NULL,
-  `name` varchar(500) NOT NULL,
-  `avatar` varchar(2000) NULL,
+  `full_name` varchar(500) NOT NULL,
+  `avatar_url` varchar(2000) NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ui_email_uidx` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `user_name` varchar(200) NOT NULL,
-  `salt` varchar(200) NOT NULL,
-  `password_hash` varchar(500) NOT NULL,
+  `salt` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user_info`(`id`),
   UNIQUE KEY `uc_user_id_uidx` (`user_id`)
