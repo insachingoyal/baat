@@ -22,7 +22,6 @@ public class UserController {
 
 	@RequestMapping("/signup")
 	public String signup(@RequestBody final SignupRequest signupRequest) {
-		userService.signup(signupRequest);
-		return "OK";
+		return userService.signup(signupRequest);
 	}
 }

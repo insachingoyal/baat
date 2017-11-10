@@ -32,3 +32,12 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
   FOREIGN KEY (`user_id`) REFERENCES `user_info`(`id`),
   UNIQUE KEY `uc_user_id_uidx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `user_token` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `user_token` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user_info`(`id`),
+  UNIQUE KEY `uc_user_id_token_uidx` (`user_id`, `user_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
