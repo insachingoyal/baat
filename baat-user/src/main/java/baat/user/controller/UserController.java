@@ -4,6 +4,7 @@ import baat.common.transfer.user.SignupRequest;
 import baat.common.transfer.user.UserCredentials;
 import baat.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +15,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/authenticate")
 	public String authenticate(@RequestBody final UserCredentials credentials) {
-		userService.authenticate(credentials);
-		return "OK";
+		return userService.authenticate(credentials);
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/signup")
 	public String signup(@RequestBody final SignupRequest signupRequest) {
 		return userService.signup(signupRequest);

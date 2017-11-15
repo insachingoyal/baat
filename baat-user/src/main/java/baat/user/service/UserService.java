@@ -28,8 +28,8 @@ public class UserService {
 	@Autowired
 	UserTokenRepository userTokenRepository;
 
-	public boolean authenticate(final UserCredentials userCredentials) {
-		return false;
+	public String authenticate(final UserCredentials userCredentials) {
+		return "token";
 	}
 
 	public String signup(final SignupRequest signupRequest) {

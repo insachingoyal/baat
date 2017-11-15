@@ -17,6 +17,11 @@ public class WebController {
 		}
 	}
 
+	@RequestMapping(value = "/signup")
+	public String signup() {
+		return "signup/signup.html";
+	}
+
 	@RequestMapping(value = "/login")
 	public String login() {
 		return "login/login.html";
