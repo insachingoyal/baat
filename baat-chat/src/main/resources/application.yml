@@ -4,6 +4,7 @@ spring:
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
     initialize: ${DATABASE_INITIALISE}
+    connectionProperties: useUnicode=true;characterEncoding=utf-8
   rabbitmq:
     host: ${RABBITMQ_HOST}
   jpa:

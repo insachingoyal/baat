@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `user_name` varchar(200) NOT NULL,
-  `salt` varchar(255) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
+  `salt` binary(16) NOT NULL,
+  `password_hash` binary(32) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user_info`(`id`),
   UNIQUE KEY `uc_user_id_uidx` (`user_id`)

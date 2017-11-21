@@ -9,13 +9,13 @@ import baat.user.repository.UserTokenRepository;
 import baat.user.repository.entity.UserCredentialsEntity;
 import baat.user.repository.entity.UserInfoEntity;
 import baat.user.repository.entity.UserTokenEntity;
-import baat.user.util.Passwords;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
+import static baat.user.util.Passwords.getNextSalt;
 import static baat.user.util.Passwords.hash;
 import static baat.user.util.Passwords.isExpectedPassword;
 
@@ -82,13 +82,14 @@ public class UserService {
 		final UserInfoEntity user = userInfoRepository.save(new UserInfoEntity(signupRequest.getName(),
 				signupRequest.getEmail(), signupRequest.getAvatarUrl()));
 
-		final String salt = Passwords.getNextSalt();
+		final byte[] salt = getNextSalt();
+		final byte[] hash = hash(signupRequest.getPassword(), salt);
+
 		userCredentialsRepository.save(
 				new UserCredentialsEntity(user.getId(),
 						user.getEmail(),
 						salt,
-						hash(signupRequest.getPassword(), salt)));
-
+						hash));
 
 		final UserTokenEntity userToken = userTokenRepository.save(new UserTokenEntity(user.getId(),
 				UUID.randomUUID().toString()));
