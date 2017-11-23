@@ -12,12 +12,12 @@ $(document).ready(function () {
         $.ajax({
             contentType: 'application/json',
             data: signupRequest,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data)
+            success: function (userToken) {
+                Cookies.set("X-Auth-Token", userToken);
+                window.location = "http://" + location.hostname + ":8082/"
             },
-            error: function (error) {
-                $('#error-message').text(error.responseText)
+            error: function (data) {
+                $('#error-message').text(data.responseText)
             },
             processData: false,
             type: 'PUT',

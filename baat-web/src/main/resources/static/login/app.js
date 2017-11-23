@@ -10,11 +10,10 @@ $(document).ready(function () {
         $.ajax({
             contentType: 'application/json',
             data: userCredentials,
-            dataType: 'json',
             success: function (data) {
             },
-            error: function (error) {
-                $('#error-message').text(error.responseText)
+            error: function (data) {
+                $('#error-message').text(data.responseText)
             },
             processData: false,
             type: 'PUT',

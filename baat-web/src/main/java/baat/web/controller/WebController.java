@@ -1,7 +1,7 @@
 package baat.web.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static baat.common.constants.Constants.X_AUTH_TOKEN;
@@ -9,7 +9,7 @@ import static baat.common.constants.Constants.X_AUTH_TOKEN;
 @Controller
 public class WebController {
 	@RequestMapping(value = {"/", "home"})
-	public String home(@RequestHeader(value = X_AUTH_TOKEN, required = false) final String userToken) {
+	public String home(@CookieValue(value = X_AUTH_TOKEN, required = false) final String userToken) {
 		if (validUserToken(userToken)) {
 			return "home/home.html";
 		} else {
