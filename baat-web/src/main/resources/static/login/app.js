@@ -13,7 +13,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
             },
-            error: function () {
+            error: function (error) {
+                $('#error-message').text(error.responseText)
             },
             processData: false,
             type: 'PUT',

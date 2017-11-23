@@ -9,16 +9,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class UserErrorHandler extends ResponseEntityExceptionHandler {
 	//TODO bean validation framework
-//	@ExceptionHandler({MethodArgumentNotValidException.class})
-//	public ResponseEntity<String> handleMethodArgumentNotValidException(final MethodArgumentNotValidException ex) {
-//		BindingResult result = ex.getBindingResult();
-//		FieldError error = result.getFieldError();
-//		String errorMessage = null;
-//		if (error != null) {
-//			errorMessage = error.getField() + " - " + error.getDefaultMessage();
-//		}
-//		return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-//	}
+	//	@ExceptionHandler({MethodArgumentNotValidException.class})
+	//	public ResponseEntity<String> handleMethodArgumentNotValidException(final MethodArgumentNotValidException ex) {
+	//		BindingResult result = ex.getBindingResult();
+	//		FieldError error = result.getFieldError();
+	//		String errorMessage = null;
+	//		if (error != null) {
+	//			errorMessage = error.getField() + " - " + error.getDefaultMessage();
+	//		}
+	//		return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+	//	}
 
 	@ExceptionHandler({IllegalArgumentException.class})
 	public ResponseEntity<String> handleIllegalArgumentException(final IllegalArgumentException ex) {

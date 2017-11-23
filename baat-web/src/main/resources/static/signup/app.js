@@ -14,8 +14,10 @@ $(document).ready(function () {
             data: signupRequest,
             dataType: 'json',
             success: function (data) {
+                console.log(data)
             },
-            error: function () {
+            error: function (error) {
+                $('#error-message').text(error.responseText)
             },
             processData: false,
             type: 'PUT',
