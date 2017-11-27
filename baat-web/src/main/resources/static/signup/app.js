@@ -14,7 +14,7 @@ $(document).ready(function () {
             data: signupRequest,
             success: function (userToken) {
                 Cookies.set("X-Auth-Token", userToken);
-                window.location = "http://" + location.hostname + ":8082/"
+                window.location.href = "http://" + location.hostname + ":8082/"
             },
             error: function (data) {
                 $('#error-message').text(data.responseText)

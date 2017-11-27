@@ -10,7 +10,9 @@ $(document).ready(function () {
         $.ajax({
             contentType: 'application/json',
             data: userCredentials,
-            success: function (data) {
+            success: function (userToken) {
+                Cookies.set("X-Auth-Token", userToken);
+                window.location.href = "http://" + location.hostname + ":8082/"
             },
             error: function (data) {
                 $('#error-message').text(data.responseText)
@@ -21,6 +23,6 @@ $(document).ready(function () {
         });
     });
     $('#signup-button').click(function () {
-        window.location = "http://" + location.hostname + ":8082/signup"
+        window.location.href = "http://" + location.hostname + ":8082/signup"
     });
 });
