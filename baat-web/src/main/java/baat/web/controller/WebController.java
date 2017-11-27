@@ -51,7 +51,7 @@ public class WebController {
 			return BooleanUtils.isTrue(new RestTemplate().getForObject(
 					URI.create(userServiceURI + "/validateUserToken/" + userToken), Boolean.class));
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			//TODO error logging
 			return false;
 		}
 	}
