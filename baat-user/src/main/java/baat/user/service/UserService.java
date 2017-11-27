@@ -96,4 +96,10 @@ public class UserService {
 		return userToken.getUserToken();
 	}
 
+	public boolean validateUserToken(final String userToken) {
+		if (StringUtils.isEmpty(userToken))
+			return false;
+
+		return (userTokenRepository.findByUserToken(userToken) != null);
+	}
 }

@@ -42,6 +42,7 @@ services:
       - '8082:8082'
     environment:
       - SERVER_PORT=8082
+      - USER_SERVICE_URI=http://baat-user:8081
 
   baat-ws:
     build: baat-ws/
