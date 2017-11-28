@@ -8,33 +8,12 @@
 
 <body>
 
-<div id="connection-panel">
-    <div>Connection Panel >></div>
-    <br>
-    <div>
-        User: <input id="from-user" type="text"/>
-        <input type="button" id="connect-button" value="Connect">
-    </div>
+<div class="container">
+    <p class="lead" id="user-details"></p>
+    <p id="error-message" class="lead bg-danger text-danger text-center"></p>
+
+    <div id="user-list"></div>
+    <div id="message-panel"></div>
 </div>
-
-<hr>
-
-<div id="messages-panel">
-    <div>Messages >></div>
-    <br>
-    <div id="messages">
-    </div>
-</div>
-
-<hr>
-
-<div id="send-new-message-panel">
-    <div>Send New Message >></div>
-    <br>
-    To: <input id="to-user" type="text"/>
-    Message: <input id="new-message" type="text"/>
-    <input type="button" id="send-button" value="Send">
-</div>
-
 </body>
 </html>

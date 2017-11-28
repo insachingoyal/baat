@@ -3,6 +3,7 @@ package baat.user.service;
 
 import baat.common.transfer.user.SignupRequest;
 import baat.common.transfer.user.UserCredentials;
+import baat.common.transfer.user.UserInfo;
 import baat.user.repository.UserCredentialsRepository;
 import baat.user.repository.UserInfoRepository;
 import baat.user.repository.UserTokenRepository;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static baat.user.util.Passwords.getNextSalt;
@@ -101,5 +104,30 @@ public class UserService {
 			return false;
 
 		return (userTokenRepository.findByUserToken(userToken) != null);
+	}
+
+	public UserInfo getUserForToken(final String userToken) {
+		UserTokenEntity userTokenEntity = userTokenRepository.findByUserToken(userToken);
+		if (userTokenEntity != null) {
+			UserInfoEntity userInfoEntity = userInfoRepository.findOne(userTokenEntity.getUserId());
+
+			if (userInfoEntity != null) {
+				return new UserInfo(userInfoEntity.getId(), userInfoEntity.getEmail(),
+						userInfoEntity.getFullName(), userInfoEntity.getAvatarUrl());
+			}
+		}
+		return null;
+	}
+
+	public List<UserInfo> getAllUsers() {
+		List<UserInfoEntity> userInfoEntities = userInfoRepository.findAll();
+		List<UserInfo> userInfos = new ArrayList<>();
+		if (userInfoEntities != null) {
+			for (final UserInfoEntity userInfoEntity : userInfoEntities) {
+				userInfos.add(new UserInfo(userInfoEntity.getId(), userInfoEntity.getEmail(),
+						userInfoEntity.getFullName(), userInfoEntity.getAvatarUrl()));
+			}
+		}
+		return userInfos;
 	}
 }
