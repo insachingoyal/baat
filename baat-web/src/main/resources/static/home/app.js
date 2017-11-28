@@ -44,7 +44,7 @@ $(document).ready(function () {
             success: function (userInfos) {
                 for (var i = 0; i < userInfos.length; i++) {
                     var userInfo = userInfos[i];
-                    $("#user-list").append("<div id='user-" + userInfos.id + "'>" + userInfo.fullName + "</div>")
+                    $("#user-list").append("<div><a class='btn btn-link' id='user-" + userInfo.id + "' data-user-id='" + userInfo.id + "'>" + userInfo.fullName + "</a></div>")
                 }
             },
             error: function (error) {
