@@ -2,6 +2,8 @@
 <html>
 <head>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/common/js-cookie.js"></script>
     <script src="/home/app.js"></script>
@@ -15,13 +17,15 @@
     <p id="error-message" class="lead bg-danger text-danger text-center"></p>
 
     <div class="row">
-        <div id="user-list" class="col-md-2" style="height: 500px;"></div>
+        <div id="user-list" class="col-md-2" style="height: 500px;max-height: 500px"></div>
         <div id="message-panel" class="col-md-6">
-            <div id="message-history-panel" class="row panel panel-default" style="height: 400px;"></div>
+            <div id="message-history-panel" class="row panel panel-default"
+                 style="height: 400px;max-height: 400px"></div>
             <div id="message-input-panel" class="row">
-                <div class="col-md-10" style="padding-left: 0"><textarea class="form-control" rows="2"></textarea></div>
+                <div class="col-md-10" style="padding-left: 0"><textarea class="form-control" rows="2"
+                                                                         id="new-message"></textarea></div>
                 <div class="col-md-2" style="padding-right: 0">
-                    <button class="btn btn-default btn-lg">Send</button>
+                    <button class="btn btn-default btn-lg" id="send-button"><strong>Send</strong></button>
                 </div>
             </div>
         </div>
