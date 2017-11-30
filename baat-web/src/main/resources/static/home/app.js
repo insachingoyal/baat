@@ -44,9 +44,11 @@ $(document).ready(function () {
             success: function (userInfos) {
                 for (var i = 0; i < userInfos.length; i++) {
                     var userInfo = userInfos[i];
-                    $("#user-list").append("<div class='panel panel-collapse'><a class='btn btn-link' " +
-                        "id='user-" + userInfo.id + "' data-user-id='" + userInfo.id + "'>" +
-                        "<strong>" + userInfo.fullName + "</strong></a></div>")
+                    $("#user-list").append("<li>" +
+                        "<a id='user-" + userInfo.id + "' data-user-id='" + userInfo.id + "' href='#' >" +
+                        "<strong>" + userInfo.fullName + "</strong>" +
+                        "</a>" +
+                        "</li>")
                 }
             },
             error: function (error) {
