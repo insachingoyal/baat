@@ -1,5 +1,7 @@
 package baat.ws.handler;
 
+import org.apache.commons.lang3.BooleanUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.PongMessage;
@@ -8,6 +10,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +19,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserSessionHandler extends AbstractWebSocketHandler {
 
 	private final static Map<String, Set<WebSocketSession>> SESSIONS_BY_USER_TOKENS = new ConcurrentHashMap<>();
+	private final String userServiceURI;
+
+	public UserSessionHandler(final String userServiceURI) {
+		this.userServiceURI = userServiceURI;
+	}
 
 	@Override
 	protected void handleTextMessage(final WebSocketSession session, final TextMessage message) throws Exception {
@@ -61,9 +69,13 @@ public class UserSessionHandler extends AbstractWebSocketHandler {
 	}
 
 	private boolean validUserToken(final String userToken) {
-		// TODO validate user token from user service
-
-		return (userToken != null && !userToken.isEmpty());
+		try {
+			return BooleanUtils.isTrue(new RestTemplate().getForObject(
+					URI.create(userServiceURI + "/validateUserToken/" + userToken), Boolean.class));
+		} catch (Exception exception) {
+			//TODO error logging
+			return false;
+		}
 	}
 
 	private void addSession(final String userToken, final WebSocketSession session) {

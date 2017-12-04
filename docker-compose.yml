@@ -55,6 +55,7 @@ services:
     environment:
       - SERVER_PORT=8083
       - RABBITMQ_HOST=rabbitmq
+      - USER_SERVICE_URI=http://baat-user:8081
 
   baat-chat:
     build: baat-chat/
@@ -73,4 +74,5 @@ services:
       - DATABASE_NAME=baat
       - DATABASE_PORT=3306
       - DATABASE_INITIALISE=true
+      - USER_SERVICE_URI=http://baat-user:8081
 

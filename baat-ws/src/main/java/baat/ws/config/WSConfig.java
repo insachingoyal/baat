@@ -1,6 +1,7 @@
 package baat.ws.config;
 
 import baat.ws.handler.UserSessionHandler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -11,9 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WSConfig implements WebSocketConfigurer {
 
+	@Value("${user_service_uri}")
+	private String userServiceURI;
+
 	@Bean
 	public UserSessionHandler userSessionHandler() {
-		return new UserSessionHandler();
+		return new UserSessionHandler(userServiceURI);
 	}
 
 	@Override

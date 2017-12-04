@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -50,5 +51,11 @@ public class UserController {
 	@RequestMapping(value = "/users", method = GET)
 	public List<UserInfo> users() {
 		return userService.getAllUsers();
+	}
+
+	@CrossOrigin
+	@RequestMapping(value = "/userTokens/{userId}", method = GET)
+	public Set<String> userTokens(@PathVariable("userId") final Long userId) {
+		return userService.getUserTokens(userId);
 	}
 }

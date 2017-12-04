@@ -15,8 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static baat.user.util.Passwords.getNextSalt;
 import static baat.user.util.Passwords.hash;
@@ -58,11 +61,8 @@ public class UserService {
 			throw new IllegalArgumentException("Invalid username/password");
 		}
 
-		UserTokenEntity userToken = userTokenRepository.findByUserId(userInfoEntity.getId());
-		if (userToken == null || StringUtils.isEmpty(userToken.getUserToken())) {
-			userToken = userTokenRepository.save(new UserTokenEntity(userInfoEntity.getId(), UUID.randomUUID().toString()));
-		}
-
+		final UserTokenEntity userToken = userTokenRepository.save(
+				new UserTokenEntity(userInfoEntity.getId(), UUID.randomUUID().toString()));
 		return userToken.getUserToken();
 	}
 
@@ -129,5 +129,15 @@ public class UserService {
 			}
 		}
 		return userInfos;
+	}
+
+	public Set<String> getUserTokens(final Long userId) {
+		final Set<UserTokenEntity> userTokens = userTokenRepository.findByUserId(userId);
+		if (userTokens == null) {
+			return Collections.emptySet();
+		}
+		return userTokens.stream()
+				.map(UserTokenEntity::getUserToken)
+				.collect(Collectors.toSet());
 	}
 }
